@@ -12,38 +12,42 @@ var connector = new botbuilder_1.ChatConnector({
 //var connector = new ConsoleConnector().listen();
 var bot = new botbuilder_1.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
+const sendAttachments = (session, attachments) => session.send(new botbuilder_1.Message(session)
+    .text("nominal message")
+    .sourceEvent({ '*': attachments }));
 bot.dialog('/', new botbuilder_1.IntentDialog()
-    .matches(/^hero/i, session => {
-    const message = new botbuilder_1.Message(session)
-        .text("nominal message")
-        .sourceEvent({ '*': {
-            "attachments": [{
-                    "contentType": "application/vnd.microsoft.card.hero",
-                    "content": {
-                        'title': 'Title',
-                        'subtitle': 'Subtitle',
-                        'images': [{
-                                'url': 'http://thiswas.notinventedhe.re/on/2009-09-21',
-                                'alt': 'Image alt text'
-                            }],
-                        'text': 'This is the hero card text',
-                        'buttons': [{
-                                'type': 'imBack',
-                                'value': 'imBack value',
-                                'title': 'imBack title'
-                            }, {
-                                'type': 'openUrl',
-                                'value': 'openUrl value',
-                                'title': 'openUrl title'
-                            }, {
-                                'type': 'postBack',
-                                'value': 'postBack value',
-                                'title': 'postBack title'
-                            }],
-                    }
-                }]
-        }
-    });
-    session.send(message);
-})
+    .matches(/^hero/i, session => sendAttachments(session, {
+    attachments: [{
+            contentType: "application/vnd.microsoft.card.hero",
+            content: {
+                title: 'Title',
+                subtitle: 'Subtitle',
+                images: [{
+                        url: 'http://thiswas.notinventedhe.re/on/2009-09-21',
+                        alt: 'Image alt text'
+                    }],
+                text: 'This is the hero card text',
+                buttons: [{
+                        type: 'imBack',
+                        value: 'imBack value',
+                        title: 'imBack title'
+                    }, {
+                        type: 'openUrl',
+                        value: 'openUrl value',
+                        title: 'openUrl title'
+                    }, {
+                        type: 'postBack',
+                        value: 'postBack value',
+                        title: 'postBack title'
+                    }]
+            }
+        }]
+}))
+    .matches(/^image/i, session => sendAttachments(session, {
+    attachments: [{
+            contentType: "image/png",
+            contentUrl: 'http://thiswas.notinventedhe.re/on/2009-09-21',
+            name: '2009-09-21'
+        }]
+}))
     .onDefault(botbuilder_1.DialogAction.send("valid commands: hero")));
