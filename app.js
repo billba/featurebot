@@ -17,27 +17,33 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
     const message = new botbuilder_1.Message(session)
         .text("nominal message")
         .sourceEvent({ '*': JSON.stringify({
-            'images': [{
-                    'url': 'http://thiswas.notinventedhe.re/on/2009-09-21',
-                    'alt': 'Image alt text'
-                }],
-            'text': 'This is the hero card text',
-            'buttons': [{
-                    'type': 'imBack',
-                    'value': 'imBack value',
-                    'title': 'imBack title'
-                }, {
-                    'type': 'openUrl',
-                    'value': 'openUrl value',
-                    'title': 'openUrl title'
-                }, {
-                    'type': 'postBack',
-                    'value': 'postBack value',
-                    'title': 'postBack title'
-                }],
-            'subtitle': 'Subtitle',
-            'title': 'Title'
-        }) });
+            "attachments": [{
+                    "contentType": "application/vnd.microsoft.card.hero",
+                    "content": {
+                        'title': 'Title',
+                        'subtitle': 'Subtitle',
+                        'images': [{
+                                'url': 'http://thiswas.notinventedhe.re/on/2009-09-21',
+                                'alt': 'Image alt text'
+                            }],
+                        'text': 'This is the hero card text',
+                        'buttons': [{
+                                'type': 'imBack',
+                                'value': 'imBack value',
+                                'title': 'imBack title'
+                            }, {
+                                'type': 'openUrl',
+                                'value': 'openUrl value',
+                                'title': 'openUrl title'
+                            }, {
+                                'type': 'postBack',
+                                'value': 'postBack value',
+                                'title': 'postBack title'
+                            }],
+                    }
+                }]
+        })
+    });
     session.send(message);
 })
     .onDefault(botbuilder_1.DialogAction.send("valid commands: hero")));
