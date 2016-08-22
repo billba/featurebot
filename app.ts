@@ -14,11 +14,13 @@ var connector = new ChatConnector({
 //var connector = new ConsoleConnector().listen();
 
 var bot = new UniversalBot(connector);
+server.post('/api/messages', connector.listen());
 
 bot.dialog('/',
     new IntentDialog()
-    .matches(/^hero/i, (session, args, next) => {
-        session.send("Your Herocard Here");
-    })
+    .matches(/^hero/i, session =>
+        session.send(
+            "Your Herocard Here"
+        ))
     .onDefault(DialogAction.send("valid commands: hero"))
 );
