@@ -1,4 +1,4 @@
-import { ChatConnector, UniversalBot, Prompts, DialogAction, IntentDialog, HeroCard, CardAction, Message } from 'botbuilder';
+import { ChatConnector, ConsoleConnector, UniversalBot, Prompts, DialogAction, IntentDialog, HeroCard, CardAction, Message } from 'botbuilder';
 import { createServer } from 'restify'; 
 
 var server = createServer();
@@ -11,11 +11,13 @@ var connector = new ChatConnector({
     appPassword: process.env.MICROSOFT_APP_PASSWORD
 });
 
+//var connector = new ConsoleConnector().listen();
+
 var bot = new UniversalBot(connector);
 
 bot.dialog('/',
     new IntentDialog()
-    .matches("hero", (session, args, next) => {
+    .matches(/^hero/i, (session, args, next) => {
         session.send("Your Herocard Here");
     })
     .onDefault(DialogAction.send("valid commands: hero"))
