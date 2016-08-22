@@ -20,11 +20,8 @@ bot.dialog('/',
     new IntentDialog()
     .matches(/^hero/i, session => {
         const message = new Message(session)
-            .text(
-/*"nominal message")
-            .sourceEvent({'*': 
-*/
-            JSON.stringify({
+            .text("nominal message")
+            .sourceEvent({'*': {
                 "attachments": [{
                     "contentType": "application/vnd.microsoft.card.hero",
                     "content": {
@@ -50,9 +47,8 @@ bot.dialog('/',
                         }],
                     }
                 }]
-            })
-//        }
-        );
+            }
+        });
         session.send(message);
     })
     .onDefault(DialogAction.send("valid commands: hero"))
