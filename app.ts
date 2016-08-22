@@ -32,8 +32,9 @@ bot.dialog('/',
                     title: 'Title',
                     subtitle: 'Subtitle',                
                     images: [{
-                        url: 'http://thiswas.notinventedhe.re/on/2009-09-21',
-                        alt: 'Image alt text'
+                        url: 'http://thiswas.notinventedhe.re/on/2009-09-21'
+                    }, {
+                        url: 'http://thiswas.notinventedhe.re/on/2009-09-22'
                     }],
                     text: 'This is the hero card text',
                     buttons: [{
