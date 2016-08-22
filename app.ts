@@ -18,9 +18,34 @@ server.post('/api/messages', connector.listen());
 
 bot.dialog('/',
     new IntentDialog()
-    .matches(/^hero/i, session =>
-        session.send(
-            "Your Herocard Here"
-        ))
+    .matches(/^hero/i, session => {
+        const message = new Message(session)
+            .text("nominal message")
+            .sourceEvent({'*': JSON.stringify(
+            {
+                'images': [{
+                    'url': 'http://thiswas.notinventedhe.re/on/2009-09-21',
+                    'alt': 'Image alt text'
+                }],
+                'text': 'This is the hero card text',
+                'buttons': [{
+                    'type': 'imBack',
+                    'value': 'imBack value',
+                    'title': 'imBack title'
+                }, {
+                    'type': 'openUrl',
+                    'value': 'openUrl value',
+                    'title': 'openUrl title'
+                }, {
+                    'type': 'postBack',
+                    'value': 'postBack value',
+                    'title': 'postBack title'
+                }],
+                'subtitle': 'Subtitle',
+                'title': 'Title'
+            }
+    )});
+        session.send(message);
+    })
     .onDefault(DialogAction.send("valid commands: hero"))
 );
