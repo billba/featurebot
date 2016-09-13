@@ -55,6 +55,7 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
         }]
 }))
     .matches(/^carousel/i, session => sendActivity(session, {
+    attachmentLayout: "carousel",
     attachments: [{
             contentType: "application/vnd.microsoft.card.hero",
             content: {

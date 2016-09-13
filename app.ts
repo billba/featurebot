@@ -58,6 +58,7 @@ bot.dialog('/',
     )
     .matches(/^carousel/i, session =>
         sendAttachments(session, {
+            attachmentLayout: "carousel",
             attachments: [{
                 contentType: "application/vnd.microsoft.card.hero",
                 content: {
