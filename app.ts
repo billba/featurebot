@@ -19,7 +19,7 @@ server.post('/api/messages', connector.listen());
 const sendAttachments = (session: Session, attachments: any ) =>
     session.send(new Message(session)
         .text("nominal message")
-        .sourceEvent({'*': attachments})
+//        .sourceEvent({'*': attachments})
     );
  
 bot.dialog('/',
