@@ -16,16 +16,16 @@ var connector = new ChatConnector({
 var bot = new UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
-const sendAttachments = (session: Session, attachments: any ) =>
+const sendActivity = (session: Session, activity: any ) =>
     session.send(new Message(session)
         .text("nominal message")
-//        .sourceEvent({'*': attachments})
+//        .sourceEvent({'*': activity})
     );
  
 bot.dialog('/',
     new IntentDialog()
     .matches(/^hero/i, session =>
-        sendAttachments(session, {
+        sendActivity(session, {
             attachments: [{
                 contentType: "application/vnd.microsoft.card.hero",
                 content: {
@@ -55,7 +55,7 @@ bot.dialog('/',
         })
     )
     .matches(/^image/i, session =>
-        sendAttachments(session, {
+        sendActivity(session, {
             attachments: [{
                 contentType: "image/png",
                 contentUrl: 'http://thiswas.notinventedhe.re/on/2009-09-21',
@@ -63,5 +63,5 @@ bot.dialog('/',
             }]
         })
     )
-    .onDefault(DialogAction.send("valid commands: hero"))
+    .onDefault(DialogAction.send("valid commands: hero image"))
 );

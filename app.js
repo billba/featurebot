@@ -12,11 +12,10 @@ var connector = new botbuilder_1.ChatConnector({
 //var connector = new ConsoleConnector().listen();
 var bot = new botbuilder_1.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
-const sendAttachments = (session, attachments) => session.send(new botbuilder_1.Message(session)
-    .text("nominal message")
-    .sourceEvent({ '*': attachments }));
+const sendActivity = (session, activity) => session.send(new botbuilder_1.Message(session)
+    .text("nominal message"));
 bot.dialog('/', new botbuilder_1.IntentDialog()
-    .matches(/^hero/i, session => sendAttachments(session, {
+    .matches(/^hero/i, session => sendActivity(session, {
     attachments: [{
             contentType: "application/vnd.microsoft.card.hero",
             content: {
@@ -44,11 +43,11 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
             }
         }]
 }))
-    .matches(/^image/i, session => sendAttachments(session, {
+    .matches(/^image/i, session => sendActivity(session, {
     attachments: [{
             contentType: "image/png",
             contentUrl: 'http://thiswas.notinventedhe.re/on/2009-09-21',
             name: '2009-09-21'
         }]
 }))
-    .onDefault(botbuilder_1.DialogAction.send("valid commands: hero")));
+    .onDefault(botbuilder_1.DialogAction.send("valid commands: hero image")));
