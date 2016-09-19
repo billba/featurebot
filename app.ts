@@ -16,12 +16,14 @@ var connector = new ChatConnector({
 var bot = new UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
-const sendActivity = (session: Session, activity: any ) =>
+const sendActivity = (session: Session, activity: any ) => {
+    console.log("sending", activity);
     session.send(new Message(session)
         .text("nominal message")
 //        .sourceEvent({'*': activity})
     );
- 
+}
+
 bot.dialog('/',
     new IntentDialog()
     .matches(/^hero/i, session =>

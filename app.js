@@ -12,8 +12,11 @@ var connector = new botbuilder_1.ChatConnector({
 //var connector = new ConsoleConnector().listen();
 var bot = new botbuilder_1.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
-const sendActivity = (session, activity) => session.send(new botbuilder_1.Message(session)
-    .text("nominal message"));
+const sendActivity = (session, activity) => {
+    console.log("sending", activity);
+    session.send(new botbuilder_1.Message(session)
+        .text("nominal message"));
+};
 bot.dialog('/', new botbuilder_1.IntentDialog()
     .matches(/^hero/i, session => sendActivity(session, {
     attachments: [{
