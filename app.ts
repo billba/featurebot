@@ -57,7 +57,7 @@ bot.dialog('/',
         })
     )
     .matches(/^carousel/i, session =>
-        sendAttachments(session, {
+        sendActivity(session, {
             attachmentLayout: "carousel",
             attachments: [{
                 contentType: "application/vnd.microsoft.card.hero",
@@ -174,9 +174,5 @@ bot.dialog('/',
             }]
         })
     )
-<<<<<<< 38e39d7ad6292fa4c5e61656598f2796d290f634
-    .onDefault(DialogAction.send("valid commands: hero image"))
-=======
-    .onDefault(DialogAction.send("valid commands: hero, carousel"))
->>>>>>> added node typings. Added carousel command.
+    .onDefault(DialogAction.send("valid commands: hero, image, carousel"))
 );

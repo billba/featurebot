@@ -47,13 +47,6 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
             }
         }]
 }))
-    .matches(/^image/i, session => sendActivity(session, {
-    attachments: [{
-            contentType: "image/png",
-            contentUrl: 'http://thiswas.notinventedhe.re/on/2009-09-21',
-            name: '2009-09-21'
-        }]
-}))
     .matches(/^carousel/i, session => sendActivity(session, {
     attachmentLayout: "carousel",
     attachments: [{
@@ -159,6 +152,13 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
                         title: 'postBack title'
                     }]
             }
+        }]
+}))
+    .matches(/^image/i, session => sendActivity(session, {
+    attachments: [{
+            contentType: "image/png",
+            contentUrl: 'http://thiswas.notinventedhe.re/on/2009-09-21',
+            name: '2009-09-21'
         }]
 }))
     .onDefault(botbuilder_1.DialogAction.send("valid commands: hero, image, carousel")));
