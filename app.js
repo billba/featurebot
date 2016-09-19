@@ -15,7 +15,8 @@ server.post('/api/messages', connector.listen());
 const sendActivity = (session, activity) => {
     console.log("sending", activity);
     session.send(new botbuilder_1.Message(session)
-        .text("nominal message"));
+        .text("nominal message")
+        .sourceEvent({ '*': activity }));
 };
 bot.dialog('/', new botbuilder_1.IntentDialog()
     .matches(/^hero/i, session => sendActivity(session, {

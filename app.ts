@@ -20,7 +20,7 @@ const sendActivity = (session: Session, activity: any ) => {
     console.log("sending", activity);
     session.send(new Message(session)
         .text("nominal message")
-//        .sourceEvent({'*': activity})
+        .sourceEvent({'*': activity})
     );
 }
 
