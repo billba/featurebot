@@ -174,5 +174,41 @@ bot.dialog('/',
             }]
         })
     )
-    .onDefault(DialogAction.send("valid commands: hero, image, carousel"))
+    .matches(/^receipt/i, session =>
+        sendActivity(session, {
+            attachments: [{
+                contentType: "application/vnd.microsoft.card.receipt",
+                content: {
+                    title: "Recipient's Name",
+                    items: [
+                        {
+                            price: "$22.00",
+                            title: "EMP Museum"
+                        },
+                        {
+                            price: "$22.00",
+                            title: "Space Needle"
+                        }
+                    ],
+                    facts: [
+                        {
+                            value: "1234567898",
+                            key: "Order Number"
+                        },
+                        {
+                            value: "VISA 4076",
+                            key: "Payment Method"
+                        },
+                        {
+                            value: "WILLCALL",
+                            key: "Delivery Method"
+                        }
+                    ],
+                    tax: "$4.40",
+                    total: "$48.40"
+                }
+            }]
+        })
+    )
+    .onDefault(DialogAction.send("valid commands: hero, image, carousel, receipt"))
 );
