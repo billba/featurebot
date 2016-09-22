@@ -27,10 +27,34 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
                 subtitle: 'Subtitle',
                 images: [{
                         url: 'http://thiswas.notinventedhe.re/on/2009-09-21'
-                    }, {
-                        url: 'http://thiswas.notinventedhe.re/on/2009-09-22'
                     }],
                 text: 'This is the hero card text',
+                buttons: [{
+                        type: 'imBack',
+                        value: 'imBack value',
+                        title: 'imBack title'
+                    }, {
+                        type: 'openUrl',
+                        value: 'openUrl value',
+                        title: 'openUrl title'
+                    }, {
+                        type: 'postBack',
+                        value: 'postBack value',
+                        title: 'postBack title'
+                    }]
+            }
+        }]
+}))
+    .matches(/^thumbnail/i, session => sendActivity(session, {
+    attachments: [{
+            contentType: "application/vnd.microsoft.card.thumbnail",
+            content: {
+                title: 'Title',
+                subtitle: 'Subtitle',
+                images: [{
+                        url: 'http://thiswas.notinventedhe.re/on/2009-09-22'
+                    }],
+                text: 'This is the thumbnail card text',
                 buttons: [{
                         type: 'imBack',
                         value: 'imBack value',
@@ -201,4 +225,4 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
             }
         }]
 }))
-    .onDefault(botbuilder_1.DialogAction.send("valid commands: hero, image, carousel, receipt")));
+    .onDefault(botbuilder_1.DialogAction.send("valid commands: hero, thumbnail, image, carousel, receipt")));
