@@ -183,11 +183,17 @@ bot.dialog('/',
                     items: [
                         {
                             price: "$22.00",
-                            title: "EMP Museum"
+                            title: "EMP Museum",
+                            image: {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/a/a0/Night_Exterior_EMP.jpg"
+                            }
                         },
                         {
                             price: "$22.00",
-                            title: "Space Needle"
+                            title: "Space Needle",
+                            image: {
+                                url: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Seattlenighttimequeenanne.jpg"
+                            }
                         }
                     ],
                     facts: [
