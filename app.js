@@ -27,10 +27,34 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
                 subtitle: 'Subtitle',
                 images: [{
                         url: 'http://thiswas.notinventedhe.re/on/2009-09-21'
-                    }, {
-                        url: 'http://thiswas.notinventedhe.re/on/2009-09-22'
                     }],
                 text: 'This is the hero card text',
+                buttons: [{
+                        type: 'imBack',
+                        value: 'imBack value',
+                        title: 'imBack title'
+                    }, {
+                        type: 'openUrl',
+                        value: 'openUrl value',
+                        title: 'openUrl title'
+                    }, {
+                        type: 'postBack',
+                        value: 'postBack value',
+                        title: 'postBack title'
+                    }]
+            }
+        }]
+}))
+    .matches(/^thumbnail/i, session => sendActivity(session, {
+    attachments: [{
+            contentType: "application/vnd.microsoft.card.thumbnail",
+            content: {
+                title: 'Title',
+                subtitle: 'Subtitle',
+                images: [{
+                        url: 'http://thiswas.notinventedhe.re/on/2009-09-22'
+                    }],
+                text: 'This is the thumbnail card text',
                 buttons: [{
                         type: 'imBack',
                         value: 'imBack value',
@@ -161,4 +185,44 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
             name: '2009-09-21'
         }]
 }))
-    .onDefault(botbuilder_1.DialogAction.send("valid commands: hero, image, carousel")));
+    .matches(/^receipt/i, session => sendActivity(session, {
+    attachments: [{
+            contentType: "application/vnd.microsoft.card.receipt",
+            content: {
+                title: "Recipient's Name",
+                items: [
+                    {
+                        price: "$22.00",
+                        title: "EMP Museum",
+                        image: {
+                            url: "https://upload.wikimedia.org/wikipedia/commons/a/a0/Night_Exterior_EMP.jpg"
+                        }
+                    },
+                    {
+                        price: "$22.00",
+                        title: "Space Needle",
+                        image: {
+                            url: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Seattlenighttimequeenanne.jpg"
+                        }
+                    }
+                ],
+                facts: [
+                    {
+                        value: "1234567898",
+                        key: "Order Number"
+                    },
+                    {
+                        value: "VISA 4076",
+                        key: "Payment Method"
+                    },
+                    {
+                        value: "WILLCALL",
+                        key: "Delivery Method"
+                    }
+                ],
+                tax: "$4.40",
+                total: "$48.40"
+            }
+        }]
+}))
+    .onDefault(botbuilder_1.DialogAction.send("valid commands: hero, thumbnail, image, carousel, receipt")));
