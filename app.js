@@ -15,12 +15,12 @@ server.post('/api/messages', connector.listen());
 const sendActivity = (session, activity) => {
     console.log("sending", activity);
     session.send(new botbuilder_1.Message(session)
+        .text("nominal message")
         .sourceEvent({ '*': activity }));
 };
 bot.dialog('/', new botbuilder_1.IntentDialog()
     .matches(/^hero/i, session => sendActivity(session, {
     type: "message",
-    text: "nominal message",
     attachments: [{
             contentType: "application/vnd.microsoft.card.hero",
             content: {
@@ -48,7 +48,6 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
 }))
     .matches(/^thumbnail/i, session => sendActivity(session, {
     type: "message",
-    text: "nominal message",
     attachments: [{
             contentType: "application/vnd.microsoft.card.thumbnail",
             content: {
@@ -76,7 +75,6 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
 }))
     .matches(/^carousel/i, session => sendActivity(session, {
     type: "message",
-    text: "nominal message",
     attachmentLayout: "carousel",
     attachments: [{
             contentType: "application/vnd.microsoft.card.hero",
@@ -185,7 +183,6 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
 }))
     .matches(/^image/i, session => sendActivity(session, {
     type: "message",
-    text: "nominal message",
     attachments: [{
             contentType: "image/png",
             contentUrl: 'http://thiswas.notinventedhe.re/on/2009-09-21',

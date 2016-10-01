@@ -19,6 +19,7 @@ server.post('/api/messages', connector.listen());
 const sendActivity = (session: Session, activity: any ) => {
     console.log("sending", activity);
     session.send(new Message(session)
+        .text("nominal message")
         .sourceEvent({'*': activity})
     );
 }
@@ -28,7 +29,6 @@ bot.dialog('/',
     .matches(/^hero/i, session =>
         sendActivity(session, {
             type: "message",
-            text: "nominal message",
             attachments: [{
                 contentType: "application/vnd.microsoft.card.hero",
                 content: {
@@ -58,7 +58,6 @@ bot.dialog('/',
     .matches(/^thumbnail/i, session =>
         sendActivity(session, {
             type: "message",
-            text: "nominal message",
             attachments: [{
                 contentType: "application/vnd.microsoft.card.thumbnail",
                 content: {
@@ -88,7 +87,6 @@ bot.dialog('/',
     .matches(/^carousel/i, session =>
         sendActivity(session, {
             type: "message",
-            text: "nominal message",
             attachmentLayout: "carousel",
             attachments: [{
                 contentType: "application/vnd.microsoft.card.hero",
@@ -199,7 +197,6 @@ bot.dialog('/',
     .matches(/^image/i, session =>
         sendActivity(session, {
             type: "message",
-            text: "nominal message",
             attachments: [{
                 contentType: "image/png",
                 contentUrl: 'http://thiswas.notinventedhe.re/on/2009-09-21',
