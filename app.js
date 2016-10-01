@@ -15,11 +15,11 @@ server.post('/api/messages', connector.listen());
 const sendActivity = (session, activity) => {
     console.log("sending", activity);
     session.send(new botbuilder_1.Message(session)
-        .text("nominal message")
         .sourceEvent({ '*': activity }));
 };
 bot.dialog('/', new botbuilder_1.IntentDialog()
     .matches(/^hero/i, session => sendActivity(session, {
+    type: "message",
     attachments: [{
             contentType: "application/vnd.microsoft.card.hero",
             content: {
@@ -46,6 +46,7 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
         }]
 }))
     .matches(/^thumbnail/i, session => sendActivity(session, {
+    type: "message",
     attachments: [{
             contentType: "application/vnd.microsoft.card.thumbnail",
             content: {
@@ -72,6 +73,7 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
         }]
 }))
     .matches(/^carousel/i, session => sendActivity(session, {
+    type: "message",
     attachmentLayout: "carousel",
     attachments: [{
             contentType: "application/vnd.microsoft.card.hero",
@@ -179,6 +181,7 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
         }]
 }))
     .matches(/^image/i, session => sendActivity(session, {
+    type: "message",
     attachments: [{
             contentType: "image/png",
             contentUrl: 'http://thiswas.notinventedhe.re/on/2009-09-21',
@@ -186,6 +189,7 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
         }]
 }))
     .matches(/^receipt/i, session => sendActivity(session, {
+    type: "message",
     attachments: [{
             contentType: "application/vnd.microsoft.card.receipt",
             content: {
@@ -224,5 +228,8 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
                 total: "$48.40"
             }
         }]
+}))
+    .matches(/^typing/i, session => sendActivity(session, {
+    type: "typing"
 }))
     .onDefault(botbuilder_1.DialogAction.send("valid commands: hero, thumbnail, image, carousel, receipt")));
