@@ -245,7 +245,7 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
     textFormat: "markdown",
     text: "Here is some markdown text containing **bold** and _italic_ text."
 }))
-    .matches(/^plain/i, session => sendActivity(session, {
+    .matches(/^xml/i, session => sendActivity(session, {
     type: "message",
     textFormat: "xml",
     text: "Here is some xml text containing <b>bold</b> and <i>italic</i> text."

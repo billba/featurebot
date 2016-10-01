@@ -268,7 +268,7 @@ bot.dialog('/',
             text: "Here is some markdown text containing **bold** and _italic_ text." 
         })
     )
-    .matches(/^plain/i, session =>
+    .matches(/^xml/i, session =>
         sendActivity(session, {
             type: "message",
             textFormat: "xml",
