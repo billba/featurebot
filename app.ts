@@ -251,5 +251,25 @@ bot.dialog('/',
             type: "typing"
         })
     )
-    .onDefault(DialogAction.send("valid commands: hero, thumbnail, image, carousel, receipt"))
+    .matches(/^plain/i, session =>
+        sendActivity(session, {
+            type: "message",
+            text: "Here is some plain text" 
+        })
+    )
+    .matches(/^markdown/i, session =>
+        sendActivity(session, {
+            type: "message",
+            textFormat: "markdown",
+            text: "Here is some markdown text containing **bold** and _italic_ text." 
+        })
+    )
+    .matches(/^plain/i, session =>
+        sendActivity(session, {
+            type: "message",
+            textFormat: "xml",
+            text: "Here is some xml text containing <b>bold</b> and <i>italic</i> text." 
+        })
+    )
+    .onDefault(DialogAction.send("valid commands: hero, thumbnail, image, carousel, receipt, plain, markdown, xml"))
 );
