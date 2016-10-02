@@ -73,6 +73,114 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
             }
         }]
 }))
+    .matches(/^list/i, session => sendActivity(session, {
+    type: "message",
+    attachmentLayout: "list",
+    attachments: [{
+            contentType: "application/vnd.microsoft.card.hero",
+            content: {
+                title: 'Title1',
+                subtitle: 'Subtitle1',
+                images: [{
+                        url: 'http://thiswas.notinventedhe.re/on/2009-09-21'
+                    }, {
+                        url: 'http://thiswas.notinventedhe.re/on/2009-09-22'
+                    }],
+                text: 'This is the hero card text',
+                buttons: [{
+                        type: 'imBack',
+                        value: 'imBack value',
+                        title: 'imBack title'
+                    }, {
+                        type: 'openUrl',
+                        value: 'openUrl value',
+                        title: 'openUrl title'
+                    }, {
+                        type: 'postBack',
+                        value: 'postBack value',
+                        title: 'postBack title'
+                    }]
+            }
+        },
+        {
+            contentType: "application/vnd.microsoft.card.hero",
+            content: {
+                title: 'Title2',
+                subtitle: 'Subtitle2',
+                images: [{
+                        url: 'http://thiswas.notinventedhe.re/on/2009-09-21'
+                    }, {
+                        url: 'http://thiswas.notinventedhe.re/on/2009-09-22'
+                    }],
+                text: 'This is the hero card text',
+                buttons: [{
+                        type: 'imBack',
+                        value: 'imBack value',
+                        title: 'imBack title'
+                    }, {
+                        type: 'openUrl',
+                        value: 'openUrl value',
+                        title: 'openUrl title'
+                    }, {
+                        type: 'postBack',
+                        value: 'postBack value',
+                        title: 'postBack title'
+                    }]
+            }
+        },
+        {
+            contentType: "application/vnd.microsoft.card.hero",
+            content: {
+                title: 'Title3',
+                subtitle: 'Subtitle3',
+                images: [{
+                        url: 'http://thiswas.notinventedhe.re/on/2009-09-21'
+                    }, {
+                        url: 'http://thiswas.notinventedhe.re/on/2009-09-22'
+                    }],
+                text: 'This is the hero card text',
+                buttons: [{
+                        type: 'imBack',
+                        value: 'imBack value',
+                        title: 'imBack title'
+                    }, {
+                        type: 'openUrl',
+                        value: 'openUrl value',
+                        title: 'openUrl title'
+                    }, {
+                        type: 'postBack',
+                        value: 'postBack value',
+                        title: 'postBack title'
+                    }]
+            }
+        },
+        {
+            contentType: "application/vnd.microsoft.card.hero",
+            content: {
+                title: 'Title4',
+                subtitle: 'Subtitle4',
+                images: [{
+                        url: 'http://thiswas.notinventedhe.re/on/2009-09-21'
+                    }, {
+                        url: 'http://thiswas.notinventedhe.re/on/2009-09-22'
+                    }],
+                text: 'This is the hero card text',
+                buttons: [{
+                        type: 'imBack',
+                        value: 'imBack value',
+                        title: 'imBack title'
+                    }, {
+                        type: 'openUrl',
+                        value: 'openUrl value',
+                        title: 'openUrl title'
+                    }, {
+                        type: 'postBack',
+                        value: 'postBack value',
+                        title: 'postBack title'
+                    }]
+            }
+        }]
+}))
     .matches(/^carousel/i, session => sendActivity(session, {
     type: "message",
     attachmentLayout: "carousel",
@@ -233,7 +341,7 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
     .matches(/^signin/i, session => sendActivity(session, {
     type: "message",
     attachments: [{
-            contentType: "application/vnd.microsoft.card.receipt",
+            contentType: "application/vnd.microsoft.card.signin",
             content: {
                 text: "Please authorize me",
                 buttons: [{
@@ -261,4 +369,4 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
     textFormat: "xml",
     text: "Here is some xml text containing <b>bold</b> and <i>italic</i> text."
 }))
-    .onDefault(botbuilder_1.DialogAction.send("valid commands: hero, thumbnail, image, carousel, receipt, plain, markdown, xml")));
+    .onDefault(botbuilder_1.DialogAction.send("valid commands: hero, thumbnail, image, list, carousel, receipt, signin, plain, markdown, xml, typing")));

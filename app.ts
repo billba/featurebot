@@ -361,7 +361,7 @@ bot.dialog('/',
         sendActivity(session, {
             type: "message",
             attachments: [{
-                contentType: "application/vnd.microsoft.card.receipt",
+                contentType: "application/vnd.microsoft.card.signin",
                 content: {
                     text: "Please authorize me",
                     buttons: [{
