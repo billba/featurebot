@@ -230,6 +230,20 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
             }
         }]
 }))
+    .matches(/^signin/i, session => sendActivity(session, {
+    type: "message",
+    attachments: [{
+            contentType: "application/vnd.microsoft.card.receipt",
+            content: {
+                text: "Please authorize me",
+                buttons: [{
+                        type: 'signin',
+                        value: 'https://signin',
+                        title: 'connect'
+                    }]
+            }
+        }]
+}))
     .matches(/^typing/i, session => sendActivity(session, {
     type: "typing"
 }))
