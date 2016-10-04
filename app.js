@@ -13,8 +13,7 @@ var connector = new botbuilder_1.ChatConnector({
 var bot = new botbuilder_1.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 const sendActivity = (session, activity) => {
-    const textformat = session.privateConversationData["textformat"] || "markdown";
-    activity.textformat = textformat;
+    activity.textformat = session.privateConversationData["textformat"] || "markdown";
     console.log("sending", activity);
     session.send(new botbuilder_1.Message(session)
         .text("nominal message")
