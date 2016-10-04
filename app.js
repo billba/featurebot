@@ -13,12 +13,20 @@ var connector = new botbuilder_1.ChatConnector({
 var bot = new botbuilder_1.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 const sendActivity = (session, activity) => {
+    const textformat = session.privateConversationData["textformat"] || "markdown";
+    activity.textformat = textformat;
     console.log("sending", activity);
     session.send(new botbuilder_1.Message(session)
         .text("nominal message")
         .sourceEvent({ '*': activity }));
 };
 bot.dialog('/', new botbuilder_1.IntentDialog()
+    .matches(/^set\s+(\w+)\s+([^\s]+)/i, (session, result) => {
+    const key = result.matched[1];
+    const value = result.matched[2];
+    session.privateConversationData[key] = value;
+    session.send(`${key} <-- ${value}`);
+})
     .matches(/^hero/i, session => sendActivity(session, {
     type: "message",
     attachments: [{
