@@ -1,11 +1,11 @@
 import { ChatConnector, ConsoleConnector, UniversalBot, Prompts, DialogAction, IntentDialog, HeroCard, CardAction, Message, Session } from 'botbuilder';
-import { createServer } from 'restify'; 
+import { createServer } from 'restify';
 
 var server = createServer();
 server.listen(process.env.port || process.env.PORT || 3978, '::', () => {
-   console.log('%s listening to %s', server.name, server.url); 
+   console.log('%s listening to %s', server.name, server.url);
 });
-  
+
 var connector = new ChatConnector({
     appId: process.env.MICROSOFT_APP_ID,
     appPassword: process.env.MICROSOFT_APP_PASSWORD
@@ -17,6 +17,7 @@ var bot = new UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
 const sendActivity = (session: Session, activity: any ) => {
+    activity.textformat = session.privateConversationData["textformat"] || "markdown";
     console.log("sending", activity);
     session.send(new Message(session)
         .text("nominal message")
@@ -26,6 +27,12 @@ const sendActivity = (session: Session, activity: any ) => {
 
 bot.dialog('/',
     new IntentDialog()
+    .matches(/^set\s+(\w+)\s+([^\s]+)/i, (session, result) => {
+        const key = result.matched[1];
+        const value = result.matched[2];
+        session.privateConversationData[key] = value;
+        session.send(`${key} <-- ${value}`);
+    })
     .matches(/^hero/i, session =>
         sendActivity(session, {
             type: "message",
@@ -33,7 +40,7 @@ bot.dialog('/',
                 contentType: "application/vnd.microsoft.card.hero",
                 content: {
                     title: 'Title',
-                    subtitle: 'Subtitle',                
+                    subtitle: 'Subtitle',
                     images: [{
                         url: 'http://thiswas.notinventedhe.re/on/2009-09-21'
                     }],
@@ -62,7 +69,7 @@ bot.dialog('/',
                 contentType: "application/vnd.microsoft.card.thumbnail",
                 content: {
                     title: 'Title',
-                    subtitle: 'Subtitle',                
+                    subtitle: 'Subtitle',
                     images: [{
                         url: 'http://thiswas.notinventedhe.re/on/2009-09-22'
                     }],
@@ -92,7 +99,7 @@ bot.dialog('/',
                 contentType: "application/vnd.microsoft.card.hero",
                 content: {
                     title: 'Title1',
-                    subtitle: 'Subtitle1',                
+                    subtitle: 'Subtitle1',
                     images: [{
                         url: 'http://thiswas.notinventedhe.re/on/2009-09-21'
                     }, {
@@ -118,7 +125,7 @@ bot.dialog('/',
                 contentType: "application/vnd.microsoft.card.hero",
                 content: {
                     title: 'Title2',
-                    subtitle: 'Subtitle2',                
+                    subtitle: 'Subtitle2',
                     images: [{
                         url: 'http://thiswas.notinventedhe.re/on/2009-09-21'
                     }, {
@@ -144,7 +151,7 @@ bot.dialog('/',
                 contentType: "application/vnd.microsoft.card.hero",
                 content: {
                     title: 'Title3',
-                    subtitle: 'Subtitle3',                
+                    subtitle: 'Subtitle3',
                     images: [{
                         url: 'http://thiswas.notinventedhe.re/on/2009-09-21'
                     }, {
@@ -170,7 +177,7 @@ bot.dialog('/',
                 contentType: "application/vnd.microsoft.card.hero",
                 content: {
                     title: 'Title4',
-                    subtitle: 'Subtitle4',                
+                    subtitle: 'Subtitle4',
                     images: [{
                         url: 'http://thiswas.notinventedhe.re/on/2009-09-21'
                     }, {
@@ -202,7 +209,7 @@ bot.dialog('/',
                 contentType: "application/vnd.microsoft.card.hero",
                 content: {
                     title: 'Title1',
-                    subtitle: 'Subtitle1',                
+                    subtitle: 'Subtitle1',
                     images: [{
                         url: 'http://thiswas.notinventedhe.re/on/2009-09-21'
                     }, {
@@ -228,7 +235,7 @@ bot.dialog('/',
                 contentType: "application/vnd.microsoft.card.hero",
                 content: {
                     title: 'Title2',
-                    subtitle: 'Subtitle2',                
+                    subtitle: 'Subtitle2',
                     images: [{
                         url: 'http://thiswas.notinventedhe.re/on/2009-09-21'
                     }, {
@@ -254,7 +261,7 @@ bot.dialog('/',
                 contentType: "application/vnd.microsoft.card.hero",
                 content: {
                     title: 'Title3',
-                    subtitle: 'Subtitle3',                
+                    subtitle: 'Subtitle3',
                     images: [{
                         url: 'http://thiswas.notinventedhe.re/on/2009-09-21'
                     }, {
@@ -280,7 +287,7 @@ bot.dialog('/',
                 contentType: "application/vnd.microsoft.card.hero",
                 content: {
                     title: 'Title4',
-                    subtitle: 'Subtitle4',                
+                    subtitle: 'Subtitle4',
                     images: [{
                         url: 'http://thiswas.notinventedhe.re/on/2009-09-21'
                     }, {
@@ -310,7 +317,7 @@ bot.dialog('/',
             attachments: [{
                 contentType: "image/png",
                 contentUrl: 'http://thiswas.notinventedhe.re/on/2009-09-21',
-                name: '2009-09-21' 
+                name: '2009-09-21'
             }]
         })
     )
@@ -381,21 +388,21 @@ bot.dialog('/',
     .matches(/^plain/i, session =>
         sendActivity(session, {
             type: "message",
-            text: "Here is some plain text" 
+            text: "Here is some plain text"
         })
     )
     .matches(/^markdown/i, session =>
         sendActivity(session, {
             type: "message",
             textFormat: "markdown",
-            text: "Here is some markdown text containing **bold** and _italic_ text." 
+            text: "Here is some markdown text containing **bold** and _italic_ text."
         })
     )
     .matches(/^xml/i, session =>
         sendActivity(session, {
             type: "message",
             textFormat: "xml",
-            text: "Here is some xml text containing <b>bold</b> and <i>italic</i> text." 
+            text: "Here is some xml text containing <b>bold</b> and <i>italic</i> text."
         })
     )
     .onDefault(DialogAction.send("valid commands: hero, thumbnail, image, list, carousel, receipt, signin, plain, markdown, xml, typing"))
