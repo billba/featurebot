@@ -17,7 +17,7 @@ var bot = new UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
 const sendActivity = (session: Session, activity: any ) => {
-    activity.textformat = session.privateConversationData["textformat"] || "markdown";
+    activity.textFormat = session.privateConversationData["textformat"] || "markdown";
     console.log("sending", activity);
     session.send(new Message(session)
         .text("nominal message")
