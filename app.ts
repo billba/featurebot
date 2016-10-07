@@ -408,7 +408,7 @@ bot.dialog('/',
     .matches(/^channeldata/i, session =>
         sendActivity(session, {
             type: "message",
-            text: `You sent me "${session.message.sourceEvent}""`
+            text: `You sent me "${JSON.stringify(session.message.sourceEvent.data)}""`
         })
     )
     .onDefault(DialogAction.send("valid commands: hero, thumbnail, image, list, carousel, receipt, signin, plain, markdown, xml, typing, channeldata"))
