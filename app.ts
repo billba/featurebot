@@ -408,8 +408,8 @@ bot.dialog('/',
     .matches(/^channeldata/i, session =>
         sendActivity(session, {
             type: "message",
-            text: session.message.sourceEvent ?
-                `You sent me "${JSON.stringify(session.message.sourceEvent)}""` :
+            text: session.message.sourceEvent && session.message.sourceEvent.data ?
+                `You sent me "${session.message.sourceEvent.data}"` :
                 "no channeldata was found"
         })
     )
