@@ -405,11 +405,12 @@ bot.dialog('/',
             text: "Here is some xml text containing <b>bold</b> and <i>italic</i> text."
         })
     )
-    .matches(/^channeldata/i, session =>
-        sendActivity(session, {
-            type: "message",
-            text: `You sent me "${JSON.stringify(session.message.sourceEvent.data)}""`
-        })
-    )
+    .matches(/^channeldata/i, session => {
+        if (session.message.sourceEvent && session.message.sourceEvent.data)
+            sendActivity(session, {
+                type: "message",
+                text: `You sent me "${JSON.stringify(session.message.sourceEvent.data)}""`
+            })
+    })
     .onDefault(DialogAction.send("valid commands: hero, thumbnail, image, list, carousel, receipt, signin, plain, markdown, xml, typing, channeldata"))
 );
