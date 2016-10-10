@@ -353,7 +353,7 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
                 text: "Please authorize me",
                 buttons: [{
                         type: 'signin',
-                        value: 'https://notinventedhe.re',
+                        value: 'http://notinventedhe.re',
                         title: 'connect'
                     }]
             }
