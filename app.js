@@ -43,7 +43,7 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
                         title: 'imBack title'
                     }, {
                         type: 'openUrl',
-                        value: 'openUrl value',
+                        value: 'http://notinventedhe.re',
                         title: 'openUrl title'
                     }, {
                         type: 'postBack',
@@ -70,7 +70,7 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
                         title: 'imBack title'
                     }, {
                         type: 'openUrl',
-                        value: 'openUrl value',
+                        value: 'http://notinventedhe.re',
                         title: 'openUrl title'
                     }, {
                         type: 'postBack',
@@ -100,7 +100,7 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
                         title: 'imBack title'
                     }, {
                         type: 'openUrl',
-                        value: 'openUrl value',
+                        value: 'http://notinventedhe.re',
                         title: 'openUrl title'
                     }, {
                         type: 'postBack',
@@ -126,7 +126,7 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
                         title: 'imBack title'
                     }, {
                         type: 'openUrl',
-                        value: 'openUrl value',
+                        value: 'http://notinventedhe.re',
                         title: 'openUrl title'
                     }, {
                         type: 'postBack',
@@ -152,7 +152,7 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
                         title: 'imBack title'
                     }, {
                         type: 'openUrl',
-                        value: 'openUrl value',
+                        value: 'http://notinventedhe.re',
                         title: 'openUrl title'
                     }, {
                         type: 'postBack',
@@ -178,7 +178,7 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
                         title: 'imBack title'
                     }, {
                         type: 'openUrl',
-                        value: 'openUrl value',
+                        value: 'http://notinventedhe.re',
                         title: 'openUrl title'
                     }, {
                         type: 'postBack',
@@ -208,7 +208,7 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
                         title: 'imBack title'
                     }, {
                         type: 'openUrl',
-                        value: 'openUrl value',
+                        value: 'http://notinventedhe.re',
                         title: 'openUrl title'
                     }, {
                         type: 'postBack',
@@ -234,7 +234,7 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
                         title: 'imBack title'
                     }, {
                         type: 'openUrl',
-                        value: 'openUrl value',
+                        value: 'http://notinventedhe.re',
                         title: 'openUrl title'
                     }, {
                         type: 'postBack',
@@ -260,7 +260,7 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
                         title: 'imBack title'
                     }, {
                         type: 'openUrl',
-                        value: 'openUrl value',
+                        value: 'http://notinventedhe.re',
                         title: 'openUrl title'
                     }, {
                         type: 'postBack',
@@ -286,7 +286,7 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
                         title: 'imBack title'
                     }, {
                         type: 'openUrl',
-                        value: 'openUrl value',
+                        value: 'http://notinventedhe.re',
                         title: 'openUrl title'
                     }, {
                         type: 'postBack',
@@ -353,7 +353,7 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
                 text: "Please authorize me",
                 buttons: [{
                         type: 'signin',
-                        value: 'https://signin',
+                        value: 'https://notinventedhe.re',
                         title: 'connect'
                     }]
             }
