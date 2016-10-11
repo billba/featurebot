@@ -379,7 +379,7 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
     .matches(/^backchannel/i, session => sendActivity(session, {
     type: "message",
     text: session.message.sourceEvent && session.message.sourceEvent.backchannel ?
-        `You sent me "${session.message.sourceEvent.backchannel}"` :
+        `You sent me "${JSON.stringify(session.message.sourceEvent.backchannel)}"` :
         "no backchannel data was found in channeldata"
 }))
     .onDefault(botbuilder_1.DialogAction.send("valid commands: hero, thumbnail, image, list, carousel, receipt, signin, plain, markdown, xml, typing, backchannel")));

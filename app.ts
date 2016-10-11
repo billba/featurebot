@@ -409,7 +409,7 @@ bot.dialog('/',
         sendActivity(session, {
             type: "message",
             text: session.message.sourceEvent && session.message.sourceEvent.backchannel ?
-                `You sent me "${session.message.sourceEvent.backchannel}"` :
+                `You sent me "${JSON.stringify(session.message.sourceEvent.backchannel)}"` :
                 "no backchannel data was found in channeldata"
         })
     )
