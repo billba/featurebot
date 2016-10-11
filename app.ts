@@ -408,8 +408,8 @@ bot.dialog('/',
     .matches(/^backchannel/i, session =>
         sendActivity(session, {
             type: "message",
-            text: session.message.sourceEvent && session.message.sourceEvent.contents ?
-                `You sent me "${session.message.sourceEvent.contents}"` :
+            text: session.message.sourceEvent && session.message.sourceEvent.backchannel ?
+                `You sent me "${session.message.sourceEvent.backchannel}"` :
                 "no backchannel data was found in channeldata"
         })
     )
