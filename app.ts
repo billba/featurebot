@@ -25,7 +25,12 @@ const sendActivity = (session: Session, activity: any ) => {
     );
 }
 
-bot.dialog('/',
+bot.dialog('/', session => {
+    session.send("Welcome to FeatureBot");
+    session.beginDialog('/features');
+});
+
+bot.dialog('/features',
     new IntentDialog()
     .matches(/^set\s+(\w+)\s+([^\s]+)/i, (session, result) => {
         const key = result.matched[1];

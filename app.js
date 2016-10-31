@@ -19,7 +19,11 @@ const sendActivity = (session, activity) => {
         .text("nominal message")
         .sourceEvent({ '*': activity }));
 };
-bot.dialog('/', new botbuilder_1.IntentDialog()
+bot.dialog('/', session => {
+    session.send("Welcome to FeatureBot");
+    session.beginDialog('/features');
+});
+bot.dialog('/features', new botbuilder_1.IntentDialog()
     .matches(/^set\s+(\w+)\s+([^\s]+)/i, (session, result) => {
     const key = result.matched[1];
     const value = result.matched[2];
