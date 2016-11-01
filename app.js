@@ -19,11 +19,7 @@ const sendActivity = (session, activity) => {
         .text("nominal message")
         .sourceEvent({ '*': activity }));
 };
-bot.dialog('/', session => {
-    session.send("Welcome to FeatureBot");
-    session.beginDialog('/features');
-});
-bot.dialog('/features', new botbuilder_1.IntentDialog()
+bot.dialog('/', new botbuilder_1.IntentDialog()
     .matches(/^set\s+(\w+)\s+([^\s]+)/i, (session, result) => {
     const key = result.matched[1];
     const value = result.matched[2];
@@ -385,5 +381,33 @@ bot.dialog('/features', new botbuilder_1.IntentDialog()
     text: session.message.sourceEvent && session.message.sourceEvent.backchannel ?
         `You sent me "${JSON.stringify(session.message.sourceEvent.backchannel)}"` :
         "no backchannel data was found in channeldata"
+}))
+    .matches(/^textplus/i, session => sendActivity(session, {
+    type: "message",
+    text: "Some text here at the top",
+    attachments: [{
+            contentType: "application/vnd.microsoft.card.thumbnail",
+            content: {
+                title: 'Title',
+                subtitle: 'Subtitle',
+                images: [{
+                        url: 'http://thiswas.notinventedhe.re/on/2009-09-22'
+                    }],
+                text: 'This is the thumbnail card text',
+                buttons: [{
+                        type: 'imBack',
+                        value: 'imBack value',
+                        title: 'imBack title'
+                    }, {
+                        type: 'openUrl',
+                        value: 'http://notinventedhe.re',
+                        title: 'openUrl title'
+                    }, {
+                        type: 'postBack',
+                        value: 'postBack value',
+                        title: 'postBack title'
+                    }]
+            }
+        }]
 }))
     .onDefault(botbuilder_1.DialogAction.send("valid commands: hero, thumbnail, image, list, carousel, receipt, signin, plain, markdown, xml, typing, backchannel")));
