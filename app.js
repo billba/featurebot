@@ -419,4 +419,4 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
             }
         }]
 }))
-    .onDefault(botbuilder_1.DialogAction.send("valid commands: hero, thumbnail, image, list, carousel, receipt, signin, plain, markdown, xml, typing, backchannel")));
+    .onDefault(botbuilder_1.DialogAction.send("valid commands: hero, thumbnail, image, list, carousel, receipt, signin, plain, markdown, xml, typing, backchannel, video")));

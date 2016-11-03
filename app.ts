@@ -454,5 +454,5 @@ bot.dialog('/',
             }]
         })
     )
-    .onDefault(DialogAction.send("valid commands: hero, thumbnail, image, list, carousel, receipt, signin, plain, markdown, xml, typing, backchannel"))
+    .onDefault(DialogAction.send("valid commands: hero, thumbnail, image, list, carousel, receipt, signin, plain, markdown, xml, typing, backchannel, video"))
 );
