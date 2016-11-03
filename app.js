@@ -308,8 +308,9 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
     type: "message",
     attachments: [{
             contentType: "video/mp4",
-            contentUrl: 'http://video.ch9.ms/ch9/36cb/c42dc883-9ed7-4f89-9a3b-b40296c036cb/thenewmicrosoftsurfacebook.mp4',
-            name: 'The New Microsoft Surface Book'
+            contentUrl: 'https://sec.ch9.ms/ch9/09e0/63026cba-fd87-478f-a879-b1590b0b09e0/msdevshow0112_high.mp4',
+            name: 'Episode 112: Bot Framework with Dan Driscoll',
+            thumbnailUrl: 'https://sec.ch9.ms/ch9/09e0/63026cba-fd87-478f-a879-b1590b0b09e0/msdevshow0112_960.jpg'
         }]
 }))
     .matches(/^receipt/i, session => sendActivity(session, {
