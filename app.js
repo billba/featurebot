@@ -304,6 +304,14 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
             name: '2009-09-21'
         }]
 }))
+    .matches(/^video/i, session => sendActivity(session, {
+    type: "message",
+    attachments: [{
+            contentType: "video/mp4",
+            contentUrl: 'http://video.ch9.ms/ch9/36cb/c42dc883-9ed7-4f89-9a3b-b40296c036cb/thenewmicrosoftsurfacebook.mp4',
+            name: 'The New Microsoft Surface Book'
+        }]
+}))
     .matches(/^receipt/i, session => sendActivity(session, {
     type: "message",
     attachments: [{
