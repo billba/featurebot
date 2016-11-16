@@ -17,12 +17,11 @@ var bot = new UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
 const sendActivity = (session: Session, activity: any ) => {
-    activity.textFormat = session.privateConversationData["textformat"] || "markdown";
-    console.log("sending", activity);
-    session.send(new Message(session)
-        .text("nominal message")
-        .sourceEvent({'*': activity})
-    );
+    const msg = new Message(session)
+        .addAttachment(new HeroCard(session)
+            .buttons([CardAction.imBack(session, "message", "title"), CardAction.imBack(session, "message", "title")])
+        );
+    session.send(msg);
 }
 
 bot.dialog('/',
