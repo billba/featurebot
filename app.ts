@@ -1,4 +1,4 @@
-import { ChatConnector, ConsoleConnector, UniversalBot, Prompts, DialogAction, IntentDialog, HeroCard, CardAction, Message, Session } from 'botbuilder';
+import { ChatConnector, ConsoleConnector, UniversalBot, Prompts, ListStyle, DialogAction, IntentDialog, HeroCard, CardAction, Message, Session } from 'botbuilder';
 import { createServer } from 'restify';
 
 var server = createServer();
@@ -17,7 +17,7 @@ var bot = new UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
 const sendActivity = (session: Session, activity: any ) => {
-    Prompts.choice(session, "Which color?", ['red', 'green', 'blue']);
+    Prompts.choice(session, "Which color?", ['red', 'green', 'blue'], { listStyle: ListStyle.button });
 /*
     const msg = new Message(session)
         .addAttachment(new HeroCard(session)

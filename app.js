@@ -13,7 +13,7 @@ var connector = new botbuilder_1.ChatConnector({
 var bot = new botbuilder_1.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 const sendActivity = (session, activity) => {
-    botbuilder_1.Prompts.choice(session, "Which color?", ['red', 'green', 'blue']);
+    botbuilder_1.Prompts.choice(session, "Which color?", ['red', 'green', 'blue'], { listStyle: botbuilder_1.ListStyle.button });
     /*
         const msg = new Message(session)
             .addAttachment(new HeroCard(session)
