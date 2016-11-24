@@ -17,11 +17,14 @@ var bot = new UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
 const sendActivity = (session: Session, activity: any ) => {
+    Prompts.choice(session, "Which color?", ['red', 'green', 'blue']);
+/*
     const msg = new Message(session)
         .addAttachment(new HeroCard(session)
             .buttons([CardAction.imBack(session, "message", "title"), CardAction.imBack(session, "message", "title")])
         );
     session.send(msg);
+*/
 }
 
 bot.dialog('/',

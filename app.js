@@ -13,10 +13,14 @@ var connector = new botbuilder_1.ChatConnector({
 var bot = new botbuilder_1.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 const sendActivity = (session, activity) => {
-    const msg = new botbuilder_1.Message(session)
-        .addAttachment(new botbuilder_1.HeroCard(session)
-        .buttons([botbuilder_1.CardAction.imBack(session, "message", "title"), botbuilder_1.CardAction.imBack(session, "message", "title")]));
-    session.send(msg);
+    botbuilder_1.Prompts.choice(session, "Which color?", ['red', 'green', 'blue']);
+    /*
+        const msg = new Message(session)
+            .addAttachment(new HeroCard(session)
+                .buttons([CardAction.imBack(session, "message", "title"), CardAction.imBack(session, "message", "title")])
+            );
+        session.send(msg);
+    */
 };
 bot.dialog('/', new botbuilder_1.IntentDialog()
     .matches(/^set\s+(\w+)\s+([^\s]+)/i, (session, result) => {
