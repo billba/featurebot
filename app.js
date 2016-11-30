@@ -13,14 +13,7 @@ var connector = new botbuilder_1.ChatConnector({
 var bot = new botbuilder_1.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 const sendActivity = (session, activity) => {
-    botbuilder_1.Prompts.choice(session, "Which color?", ['red', 'green', 'blue'], { listStyle: botbuilder_1.ListStyle.button });
-    /*
-        const msg = new Message(session)
-            .addAttachment(new HeroCard(session)
-                .buttons([CardAction.imBack(session, "message", "title"), CardAction.imBack(session, "message", "title")])
-            );
-        session.send(msg);
-    */
+    session.send(activity);
 };
 bot.dialog('/', new botbuilder_1.IntentDialog()
     .matches(/^set\s+(\w+)\s+([^\s]+)/i, (session, result) => {
@@ -379,12 +372,9 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
     textFormat: "xml",
     text: "Here is some xml text containing <b>bold</b> and <i>italic</i> text."
 }))
-    .matches(/^backchannel/i, session => sendActivity(session, {
-    type: "message",
-    text: session.message.sourceEvent && session.message.sourceEvent.backchannel ?
-        `You sent me "${JSON.stringify(session.message.sourceEvent.backchannel)}"` :
-        "no backchannel data was found in channeldata"
-}))
+    .matches(/^backchannel/i, session => {
+    session.send(`You sent me "${JSON.stringify(session.message.sourceEvent.backchannel)}"`);
+})
     .matches(/^textplus/i, session => sendActivity(session, {
     type: "message",
     text: "Some text here at the top",

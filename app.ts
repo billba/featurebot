@@ -17,14 +17,7 @@ var bot = new UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
 const sendActivity = (session: Session, activity: any ) => {
-    Prompts.choice(session, "Which color?", ['red', 'green', 'blue'], { listStyle: ListStyle.button });
-/*
-    const msg = new Message(session)
-        .addAttachment(new HeroCard(session)
-            .buttons([CardAction.imBack(session, "message", "title"), CardAction.imBack(session, "message", "title")])
-        );
-    session.send(msg);
-*/
+    session.send(activity);
 }
 
 bot.dialog('/',
@@ -407,14 +400,9 @@ bot.dialog('/',
             text: "Here is some xml text containing <b>bold</b> and <i>italic</i> text."
         })
     )
-    .matches(/^backchannel/i, session =>
-        sendActivity(session, {
-            type: "message",
-            text: session.message.sourceEvent && session.message.sourceEvent.backchannel ?
-                `You sent me "${JSON.stringify(session.message.sourceEvent.backchannel)}"` :
-                "no backchannel data was found in channeldata"
-        })
-    )
+    .matches(/^backchannel/i, session => {
+        session.send(`You sent me "${JSON.stringify(session.message.sourceEvent.backchannel)}"`);
+    })
     .matches(/^textplus/i, session =>
         sendActivity(session, {
             type: "message",
