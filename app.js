@@ -15,6 +15,10 @@ server.post('/api/messages', connector.listen());
 const sendActivity = (session, activity) => {
     session.send(activity);
 };
+bot.on('trigger', trigger => bot.send({
+    type: 'trigger',
+    value: 'you sent a backchannel message to the server'
+}));
 bot.dialog('/', new botbuilder_1.IntentDialog()
     .matches(/^set\s+(\w+)\s+([^\s]+)/i, (session, result) => {
     const key = result.matched[1];
@@ -373,7 +377,10 @@ bot.dialog('/', new botbuilder_1.IntentDialog()
     text: "Here is some xml text containing <b>bold</b> and <i>italic</i> text."
 }))
     .matches(/^backchannel/i, session => {
-    session.send(`You sent me "${JSON.stringify(session.message.sourceEvent.backchannel)}"`);
+    session.send({
+        type: 'trigger',
+        value: "Here's a backchannel message from server"
+    });
 })
     .matches(/^textplus/i, session => sendActivity(session, {
     type: "message",

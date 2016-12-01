@@ -20,6 +20,11 @@ const sendActivity = (session: Session, activity: any ) => {
     session.send(activity);
 }
 
+bot.on('trigger', trigger => bot.send({
+    type: 'trigger',
+    value: 'you sent a backchannel message to the server'
+}));
+
 bot.dialog('/',
     new IntentDialog()
     .matches(/^set\s+(\w+)\s+([^\s]+)/i, (session, result) => {
@@ -401,7 +406,10 @@ bot.dialog('/',
         })
     )
     .matches(/^backchannel/i, session => {
-        session.send(`You sent me "${JSON.stringify(session.message.sourceEvent.backchannel)}"`);
+        session.send({
+            type: 'trigger',
+            value: "Here's a backchannel message from server"
+        });
     })
     .matches(/^textplus/i, session =>
         sendActivity(session, {

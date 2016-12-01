@@ -2,3 +2,5 @@ node_modules
 typings
 .DS_Store
 .vscode
+
+npm-debug.log
