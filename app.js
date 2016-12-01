@@ -17,7 +17,7 @@ const sendActivity = (session, activity) => {
 };
 bot.on('trigger', trigger => bot.send({
     type: 'trigger',
-    value: 'you sent a backchannel message to the server'
+    value: `you sent a backchannel message to the server with value '${trigger.value}'`
 }));
 bot.dialog('/', new botbuilder_1.IntentDialog()
     .matches(/^set\s+(\w+)\s+([^\s]+)/i, (session, result) => {
