@@ -321,6 +321,17 @@ bot.dialog('/',
             }]
         })
     )
+    .matches(/^video/i, session =>
+        sendActivity(session, {
+            type: "message",
+            attachments: [{
+                contentType: "video/mp4",
+                contentUrl: 'https://sec.ch9.ms/ch9/09e0/63026cba-fd87-478f-a879-b1590b0b09e0/msdevshow0112_high.mp4',
+                name: 'Episode 112: Bot Framework with Dan Driscoll',
+                thumbnailUrl: 'https://sec.ch9.ms/ch9/09e0/63026cba-fd87-478f-a879-b1590b0b09e0/msdevshow0112_960.jpg'
+            }]
+        })
+    )
     .matches(/^receipt/i, session =>
         sendActivity(session, {
             type: "message",
@@ -441,5 +452,5 @@ bot.dialog('/',
             }]
         })
     )
-    .onDefault(DialogAction.send("valid commands: hero, thumbnail, image, list, carousel, receipt, signin, plain, markdown, xml, typing, backchannel"))
+    .onDefault(DialogAction.send("valid commands: hero, thumbnail, image, list, carousel, receipt, signin, plain, markdown, xml, typing, backchannel, video"))
 );
